@@ -1,0 +1,20 @@
+1yfp steps (using pymol)
+------------------------
+
+download 1pgr.pdb from rcsb.org
+load 1pgr.pdb in pymol
+type findSurfaceResidues
+save atoms as 1pgr_exposed_atm.pdb
+save residues as 1pgr_exposed_res.pdb
+select helix, ss H
+save as 1pgr_helix.pdb
+select sheet, ss S
+save as 1pgr_sheet.pdb
+run gly20.py
+fix up incomplete sidechains as needed using mutate wizard and repeat above
+
+modify line 168 in gly21.py to read:
+for chain in "ACEG":
+
+this is because we have 4 copies of gcsf in these chains
+we want to look for the common residues to mutate
