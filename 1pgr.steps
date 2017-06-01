@@ -10,11 +10,11 @@ select helix, ss H
 save as 1pgr_helix.pdb
 select sheet, ss S
 save as 1pgr_sheet.pdb
-run gly20.py
+run gly21.py
 fix up incomplete sidechains as needed using mutate wizard and repeat above
 
-modify line 168 in gly21.py to read:
-for chain in "ACEG":
+modify the chains variable on line 28 to read
+chains = "ACEG"
 
 this is because we have 4 copies of gcsf in these chains
 we want to look for the common residues to mutate

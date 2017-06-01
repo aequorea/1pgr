@@ -21,17 +21,18 @@
 # This version prints out residue lists with a plus sign between the residue
 # numbers to make it easy to create pymol selection commands.
 
-
 from __future__ import print_function
 
+
 file_prefix = "1pgr"
+chains = "ACEG"									# "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+solv_thresh = 0.33	# this fraction of sidechain atoms exposed to declare residue solvent exposed
+
 
 input_file = file_prefix + ".pdb"				# PDB input file
 exposed_file = file_prefix + "_exposed_atm.pdb"	# PDB file with solvent exposed atoms
 sheet_file = file_prefix + "_sheet.pdb"			# PDB file with beta sheet residues
 helix_file = file_prefix + "_helix.pdb"			# PDB file with alpha helix residues
-
-solv_thresh = 0.33	# this fraction of sidechain atoms exposed to declare residue solvent exposed
 
 res_letters = {'ALA':'A', 'ARG':'R', 'ASN':'N', 'ASP':'D', 'CYS':'C', 'GLU':'E',
 		'GLN':'Q', 'GLY':'G', 'HIS':'H', 'ILE':'I', 'LEU':'L', 'LYS':'K', 'MET':'M',
@@ -165,8 +166,8 @@ sheet_common = set()
 helix_common = set()
 coil_common = set()
 total_common = set()
-#for chain in "ABCDEFGHIJKLMNOPQRSTUVWXYZ":
-for chain in "ACEG":
+
+for chain in chains:
 	sequence = get_sequence(input_file, chain)
 	if len(sequence) == 0: continue
 	print("\nChain {} sequence has {} residues:\n{}".format(chain, len(sequence), sequence))
